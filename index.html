@@ -4,13 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <title>Do</title>
 </head>
 <body>
     
+    <div class="modal">
+        <div class="modal-body">
+
+            <form action=""" id="form">
+                <!-- form header -->
+                <div class="modal-header">
+                    <h1>Do what?</h1>
+                    <button class="close-button close-button-modal">
+                        <div id="spinscale" class="spinscale">&times;</div>
+                    </button>
+                </div>
+
+                <!-- form inputs -->
+                <input type="text" name="title" id="title" class="text-input" minlength="1" maxlength="30" placeholder="Yoga" ><br>
+
+                <input type="text" name="details" id="details" class="text-input" minlength="1" maxlength="75" placeholder="Use new Yoga mat"><br>
+
+
+                High priority? <input type="checkbox" name="prioritize" id="prioritize"><br>
+
+                <button  type="submit" id="submit-item" class="submit close-button">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
     <div class="container">
        
         <header class="header">
@@ -21,34 +47,24 @@
             </div>
         </header>
         
+
         <div class="list-container">
             <!-- POPULATED VIA JAVASCRIPT -->
             <div class="item">
-                <!-- ADD CHECKBOX? -->
-                <div class="title">Feed Mox</div>
-                <div class="due"></div>
-                <div class="priority"></div>
-                <button class="delete">X</button>
+                <div class="title" id="title">Feed Mox</div>
+                <div class="priority" id="priority"></div>
+                <button class="delete" id="delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#fffacd"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>
+                </button>
             </div>
-            <div class="item">
-                <div class="title">Submit poem to the New Yorker</div>
-                <div class="due"></div>
-                <div class="priority"></div>
-                <button class="delete">X</button>
-            </div>
-            <div class="item">
-                <div class="title">Doctor's appt</div>
-                <div class="due"></div>
-                <div class="priority"></div>
-                <button class="delete">X</button>
-            </div>
-        
-            <button id="btnAddDo" class="material-icons-outlined">
-                <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="#87ceeb"><rect fill="none" height="24" width="24"/><path d="M22,5.18L10.59,16.6l-4.24-4.24l1.41-1.41l2.83,2.83l10-10L22,5.18z M12,20c-4.41,0-8-3.59-8-8s3.59-8,8-8 c1.57,0,3.04,0.46,4.28,1.25l1.45-1.45C16.1,2.67,14.13,2,12,2C6.48,2,2,6.48,2,12s4.48,10,10,10c1.73,0,3.36-0.44,4.78-1.22 l-1.5-1.5C14.28,19.74,13.17,20,12,20z M19,15h-3v2h3v3h2v-3h3v-2h-3v-3h-2V15z"/></svg>
-            </button>
         </div>
 
     </div>
+
+    <div class="" id="overlay"></div>
+    <button id="newItem" class="material-icons-outlined">
+        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="36px" viewBox="0 0 24 24" width="36px" fill="#87ceeb"><rect fill="none" height="24" width="24"/><path d="M22,5.18L10.59,16.6l-4.24-4.24l1.41-1.41l2.83,2.83l10-10L22,5.18z M12,20c-4.41,0-8-3.59-8-8s3.59-8,8-8 c1.57,0,3.04,0.46,4.28,1.25l1.45-1.45C16.1,2.67,14.13,2,12,2C6.48,2,2,6.48,2,12s4.48,10,10,10c1.73,0,3.36-0.44,4.78-1.22 l-1.5-1.5C14.28,19.74,13.17,20,12,20z M19,15h-3v2h3v3h2v-3h3v-2h-3v-3h-2V15z"/></svg>
+    </button>
 
     <script src="main.js"></script>
 </body>

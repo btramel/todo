@@ -1,5 +1,3 @@
-/* bootstrap?  */
-
 *,
 *::before,
 *::after {
@@ -19,19 +17,168 @@ html {
     color:lemonchiffon;
 }
 
+
+
+
+.modal {
+    position:fixed; /* doesn't move when scrolling */
+    top: 50%;       /* the following 3 properties center the modal div */
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* modal toggled off by default with scale(0) */
+    transition: 200ms ease-in;
+    z-index: 10;
+    background-color:#87ceeb;
+    width: 350px;
+    max-width: 80vw;
+    padding: 20px 10px;
+    height: auto;
+    text-align: center;
+    border: 1px solid lemonchiffon;
+    border-radius: 1rem;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1); /* to toggle on the modal via javascript */
+}
+
+.modal h1,
+.modal input {
+    margin-bottom: 1rem;
+}
+
+.modal label,
+.modal input {
+    text-align: left;
+}
+
+/* modal background properties */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: skyblue;
+    transition: 200ms ease-in-out;
+    pointer-events: none;
+    opacity: 0;
+}
+
+ #overlay.active { /* not active by default */
+    pointer-events: all;
+    opacity: .8;
+}
+
+
+
+
+/* INPUTS */
+
+input {
+    background-color: lemonchiffon;
+    color: rgb(79, 182, 223);
+    padding: .5rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+.text-input {
+    font-size: inherit;
+    font-family: inherit;
+    width: 225px;
+    cursor: text;
+}
+
 .container {
     display: flex;
     flex-direction: column;
 }
 
+
+
+/* BUTTONS */
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    padding: .5rem;
+    cursor: pointer;
+    color: inherit;
+    background-color: inherit;
+    border: 1px solid lemonchiffon;
+    border-radius: .5rem;
+}
+
+button:hover {
+    background-color: lemonchiffon;
+    color: skyblue;
+    border: 1px solid skyblue;
+}
+
+button:active {
+    background-color: lemonchiffon;
+    color: skyblue;
+    border: 1px solid skyblue;
+}
+
+
+
+.modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.close-button-modal {
+    position: absolute; 
+    left: 90%;
+    border: none;
+    outline: none;
+    font-size: 1.5em;
+    transition: transform .5s ease-in-out;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+.close-button-modal:hover {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    outline: none;
+}
+
+.close-button-modal:active {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    outline: none;
+}
+
+.close-button-modal:hover {
+    transform: scale(150%);
+}
+
+#prioritize {
+    cursor: pointer;
+}
+
+.spinscale {
+    transition: transform .5s ease-in-out;
+}
+
+.spinscale:hover {
+    transform: rotate(90deg);
+}
+
 .material-icons-outlined {
     position: fixed;
-    right: 15px;
-    bottom: 15px;
-    width: 3.75rem;
-    height: 3.75rem;
+    right: 1rem;
+    bottom: 1rem;
     border-radius: 50%;
     background-color: lemonchiffon;
+    padding: .65rem;
     border: none;
     outline: none;
     box-shadow: 0 0 10px rgba(0,0,0,0.25);
@@ -44,6 +191,11 @@ html {
     box-shadow: 0 0 20px rgba(0,0,0,0.25);
     transition: ease-in-out 250ms;
 }
+
+
+
+
+
 
 header {
     display: flex;
@@ -69,23 +221,24 @@ header {
 
 .item {
     display: grid;
-    grid-template-columns: 6fr 2fr 1fr 1fr;
-    min-height: 5rem;
+    grid-template-columns: 8fr 1fr 1fr;
+    min-height: 2rem;
     border: 1px solid lemonchiffon;
+    border-radius: .5rem;
     margin-bottom: 1rem;
-    padding: .75rem;
+    padding: .5rem;
 }
 
 
 .item button {
-    border: 1px solid lemonchiffon;
     background-color: skyblue;
     color: lemonchiffon;
-    border-radius: 1rem;
-    padding: .5rem;
+    border: none;
+    outline: none;
+    padding: .25rem;
     align-self: center;
 }
 
-.title {
+.title, .priority {
     align-self: center;
 }
