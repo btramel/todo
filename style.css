@@ -1,0 +1,91 @@
+/* bootstrap?  */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100vh;
+    width: 100vw;
+
+    font-size: 1rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    background-color: #87ceeb;
+    color:lemonchiffon;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.material-icons-outlined {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 50%;
+    background-color: lemonchiffon;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    cursor: pointer;
+}
+
+.material-icons-outlined:hover {
+    width: 4rem;
+    height: 4rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+    transition: ease-in-out 250ms;
+}
+
+header {
+    display: flex;
+    position: sticky;
+    place-items: center;
+    font-size: 1.5rem;
+    position: sticky;
+    padding: 1rem;
+
+    background-color: lemonchiffon;
+    color: skyblue;
+}
+
+.menu {
+    margin-left: auto;
+}
+
+.list-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.item {
+    display: grid;
+    grid-template-columns: 6fr 2fr 1fr 1fr;
+    min-height: 5rem;
+    border: 1px solid lemonchiffon;
+    margin-bottom: 1rem;
+    padding: .75rem;
+}
+
+
+.item button {
+    border: 1px solid lemonchiffon;
+    background-color: skyblue;
+    color: lemonchiffon;
+    border-radius: 1rem;
+    padding: .5rem;
+    align-self: center;
+}
+
+.title {
+    align-self: center;
+}
