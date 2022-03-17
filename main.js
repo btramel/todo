@@ -149,7 +149,6 @@ function render() {
         const priorityNode = document.createElement('div')
         const checkboxNode = document.createElement('input')
         const deleteNode = document.createElement('button')
-        const allNodes = document.querySelectorAll('.item')
 
 
         // assign class names to nodes
@@ -173,18 +172,6 @@ function render() {
         
 
         // click events
-        // search listener
-        const searchInput = document.querySelector('[data-search]')
-        searchInput.addEventListener('input', (e) => {
-            const value = e.target.value
-            allNodes.forEach(item => {
-                const isVisible = item.innerHTML.toLowerCase().includes(value.toLowerCase())
-                if ( !isVisible ) {
-                    item.classList.add('hidden')
-                    render()
-                }
-            })
-        })
 
         // strikethrough text if checked, and remove strike if unchecked
         checkboxNode.onclick = function() {
@@ -222,7 +209,8 @@ function render() {
                     // table log for proof
                     console.table(items)
                 }
-        
+
+    
         // display new card
         container.append(node)
         node.appendChild(titleNode)
@@ -230,7 +218,23 @@ function render() {
         node.appendChild(checkboxNode)
         node.appendChild(deleteNode)
         node.appendChild(detailsNode)
+
+        
+
     })
+    // search listener
+    // must go after page has entirely rendered or final foreach iteration will not go
+    const searchInput = document.getElementById('search')
+    const allNodes = document.querySelectorAll('.item')
+    
+    searchInput.addEventListener('input', (e) => {
+        allNodes.forEach(item => {
+            const value = e.target.value.toLowerCase()
+            const isVisible = item.children[0].innerText.toLowerCase().includes(value) 
+            || item.children[4].innerText.toLowerCase().includes(value)
+            item.classList.toggle('hidden', !isVisible)
+        }
+    )})
     save()
 }
 
@@ -238,13 +242,8 @@ function render() {
 //     // sort obj array by priority
 // }
 
-// menu functionality?
-// searchbar
-    // foreach filter through title, details
-
 // editdetailsbutton
     // ontouchitem
-    // contenteditable details section
     // exit-edit-screen
 
 if ( username === undefined || username === null ) {

@@ -23,10 +23,6 @@ html {
     /* overflow-x: hidden; hides horizontal scrollbar when items flow past viewport */
 }
 
-.hidden {
-    display: none;
-}
-
 .modal {
     position:fixed; /* doesn't move when scrolling */
     top: 50%;       /* the following 3 properties center the modal div */
@@ -309,6 +305,10 @@ footer a:active,
 footer a:visited {
     color: inherit;
     text-decoration: underline;
+}
+
+.hidden {
+    display: none;
 }
 
 /* MEDIA QUERIES */
