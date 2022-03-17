@@ -212,8 +212,20 @@ header {
     color: skyblue;
 }
 
-.menu {
+.menu,
+.search {
     margin-left: auto;
+}
+
+#search {
+    max-width: 5rem;
+    outline:#87ceeb;
+    border: 1px solid rgb(132, 197, 223);
+    font-family: inherit;
+}
+
+#search:focus {
+    max-width: 15rem;
 }
 
 .list-container {
@@ -251,11 +263,13 @@ header {
 
 }
 
-.title {
+.title,
+.details {
     padding-left: .75rem;
 }
 
-.title, .priority {
+.title, 
+.priority {
     align-self: center;
 }
 

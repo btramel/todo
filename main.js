@@ -34,6 +34,7 @@ const overlay = document.getElementById('overlay')
 const form = document.querySelector('form')
 
 // EVENT LISTENERS
+
 // listen for new item click
 document.querySelector('#newItem').addEventListener('click', () => {
     openModal()
@@ -74,6 +75,25 @@ document.getElementById('submit-item').addEventListener('click', (e) => {
     overlay.classList.remove('active')
     form.reset()
 })
+
+// allow 'enter' to trigger submit button event
+const inputTitle = document.getElementById('title')
+inputTitle.addEventListener("keyup", function(e) {
+    if (e.keyCode === 13) {
+        e.preventDefault()
+        document.getElementById('submit-item').click()
+    }
+})
+
+// allow enter on details form input as well
+const inputDetails = document.getElementById('details')
+inputDetails.addEventListener("keyup", function(e) {
+    if (e.keyCode === 13) {
+        e.preventDefault()
+        document.getElementById('submit-item').click()
+    }
+})
+
 
 // SAVE TO LOCAL STORAGE -- HALLELUJAH
 function save() {
@@ -129,6 +149,7 @@ function render() {
         const priorityNode = document.createElement('div')
         const checkboxNode = document.createElement('input')
         const deleteNode = document.createElement('button')
+        const allNodes = document.querySelectorAll('.item')
 
 
         // assign class names to nodes
@@ -142,6 +163,29 @@ function render() {
         checkboxNode.type = 'checkbox'
         checkboxNode.name = 'finished'
         checkboxNode.id = 'finished'
+
+
+        // distribute values
+        titleNode.innerText = `${item.title}`
+        detailsNode.innerText = `${item.details}`
+        if ( item.priority ? priorityNode.innerText = '!' : priorityNode.innerText = ' ' )
+        deleteNode.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" class="delete" viewBox="0 0 24 24" width="24px" fill="#fffacd"><path class="delete" d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>`
+        
+
+        // click events
+        // search listener
+        const searchInput = document.querySelector('[data-search]')
+        searchInput.addEventListener('input', (e) => {
+            const value = e.target.value
+            allNodes.forEach(item => {
+                const isVisible = item.innerHTML.toLowerCase().includes(value.toLowerCase())
+                if ( !isVisible ) {
+                    item.classList.add('hidden')
+                    render()
+                }
+            })
+        })
+
         // strikethrough text if checked, and remove strike if unchecked
         checkboxNode.onclick = function() {
             let strikeParent = checkboxNode.closest('.item')
@@ -152,13 +196,7 @@ function render() {
             }
         }
 
-
-        // distribute values
-        titleNode.innerText = `${item.title}`
-        detailsNode.innerText = `${item.details}`
-        if ( item.priority ? priorityNode.innerText = '!' : priorityNode.innerText = ' ' )
-        deleteNode.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" class="delete" viewBox="0 0 24 24" width="24px" fill="#fffacd"><path class="delete" d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>`
-        
+        // expand item container
         node.onclick = function(e) {
             if ( node.classList.contains('expand') && e.target !== checkboxNode ) { // EVENT DOESN'T FIRE IF CLICK TARGET IS CHECKBOX
                 node.classList.remove('expand')
