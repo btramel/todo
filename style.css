@@ -6,6 +6,11 @@
     box-sizing: border-box;
 }
 
+/* INCREDIBLY USEFUL -- THIS ENSURES SVG AND PATH ELEMENTS DON'T GET CLICK EVENT THAT'S INTENDED FOR A BUTTON */
+button > * {
+    pointer-events: none;
+  }
+
 html {
     height: 100vh;
     width: 100vw;
@@ -17,8 +22,9 @@ html {
     color:lemonchiffon;
 }
 
-
-
+.hidden {
+    display: none;
+}
 
 .modal {
     position:fixed; /* doesn't move when scrolling */
@@ -76,7 +82,7 @@ html {
 
 input {
     background-color: lemonchiffon;
-    color: rgb(79, 182, 223);
+    color: rgb(132, 197, 223);
     padding: .5rem;
     border: none;
     border-radius: 1rem;
@@ -192,17 +198,12 @@ button:active {
     transition: ease-in-out 250ms;
 }
 
-
-
-
-
-
 header {
     display: flex;
-    position: sticky;
+    position: fixed;
+    width: 100vw;
     place-items: center;
     font-size: 1.5rem;
-    position: sticky;
     padding: 1rem;
 
     background-color: lemonchiffon;
@@ -217,28 +218,74 @@ header {
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    margin-top: 6rem;
 }
 
 .item {
     display: grid;
-    grid-template-columns: 8fr 1fr 1fr;
+    grid-template-columns: 7fr 1fr 1fr 1fr;
+    font-size: 1.1rem;
     min-height: 2rem;
     border: 1px solid lemonchiffon;
     border-radius: .5rem;
     margin-bottom: 1rem;
     padding: .5rem;
-}
 
+    
+}
 
 .item button {
     background-color: skyblue;
     color: lemonchiffon;
     border: none;
     outline: none;
-    padding: .25rem;
+    padding: .3rem;
     align-self: center;
+}
+
+.item.expand {
+    min-height: 8rem;
+
 }
 
 .title, .priority {
     align-self: center;
+}
+
+.details {
+    font-size: .9rem;
+}
+
+/* TO BE APPLED TO TEXT WHEN CHECKBOX IS CHECKED */
+.finished {
+    text-decoration: line-through;
+    color: rgba(255, 250, 205, 0.445);
+}
+
+/* CREATE NEW CHECKBOX */
+#finished {
+    height: 18px;
+    width: 18px;
+    align-self: center;
+    cursor: pointer;
+    /* -webkit-appearance: none; */
+}
+
+body {
+    position: relative;
+}
+
+footer {
+    position: fixed;
+    color: inherit;
+    font-size: 75%;
+    left: 1rem;
+    bottom: .65rem;
+}
+
+footer a,
+footer a:active,
+footer a:visited {
+    color: inherit;
+    text-decoration: underline;
 }
