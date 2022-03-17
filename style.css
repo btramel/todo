@@ -20,6 +20,7 @@ html {
 
     background-color: #87ceeb;
     color:lemonchiffon;
+    /* overflow-x: hidden; hides horizontal scrollbar when items flow past viewport */
 }
 
 .hidden {
@@ -97,7 +98,7 @@ input {
 
 .container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 
@@ -200,6 +201,7 @@ button:active {
 
 header {
     display: flex;
+    flex-wrap: wrap;
     position: fixed;
     width: 100vw;
     place-items: center;
@@ -216,6 +218,7 @@ header {
 
 .list-container {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     padding: 1rem;
     margin-top: 6rem;
@@ -230,7 +233,7 @@ header {
     border-radius: .5rem;
     margin-bottom: 1rem;
     padding: .5rem;
-
+    width: 85vw;
     
 }
 
@@ -246,6 +249,10 @@ header {
 .item.expand {
     min-height: 8rem;
 
+}
+
+.title {
+    padding-left: .75rem;
 }
 
 .title, .priority {
@@ -288,4 +295,45 @@ footer a:active,
 footer a:visited {
     color: inherit;
     text-decoration: underline;
+}
+
+/* MEDIA QUERIES */
+
+/* @media (max-width: 575.98px) {
+
+}
+
+/* // Small devices (landscape phones, less than 768px) */
+/* @media (max-width: 767.98px) {
+
+} */
+
+/* // Medium devices (tablets, less than 992px) */
+/* @media (min-width: 991.98px) {
+    .container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .item {
+        width: 60vw;        
+    }
+    header {
+        max-width: 60vw;        
+    }
+    .material-icons-outlined {
+        right: 3rem;
+        bottom: 3rem;
+        width:4rem;
+        height:4rem;
+    }
+}
+
+/* // Large devices (desktops, less than 1200px) */
+@media (min-width: 992px) {
+    .material-icons-outlined {
+        margin-right: 7rem;
+    }
+    .menu {
+        margin-right: 7rem;
+    }
 }

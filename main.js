@@ -29,23 +29,18 @@ let caseyArr = [
 ];
 
 // SELECTORS
-const menu = document.querySelector('.menu')
-const overlay = document.getElementById('overlay')
 const modal = document.querySelector('.modal')
-const newItem = document.querySelector('#newItem')
-const closeModalButtons = document.querySelectorAll('.close-button')
-const submit = document.getElementById('submit-item')
-const deleteItem = document.querySelectorAll('.delete')
+const overlay = document.getElementById('overlay')
 const form = document.querySelector('form')
 
 // EVENT LISTENERS
 // listen for new item click
-newItem.addEventListener('click', () => {
+document.querySelector('#newItem').addEventListener('click', () => {
     openModal()
 })
 
 // listen for all closing abilities: close button, submit button, and overlay itself
-closeModalButtons.forEach(button => {
+document.querySelectorAll('.close-button').forEach(button => {
     button.addEventListener('click', (e) => {
         e.preventDefault()
         const modal = button.closest('.modal')
@@ -62,7 +57,7 @@ overlay.addEventListener('click', () => {
 })
 
 // clicking on submit will create new item div and object
-submit.addEventListener('click', (e) => {
+document.getElementById('submit-item').addEventListener('click', (e) => {
     e.preventDefault()
     createItemObj()
     function getRandomInt(max) {
