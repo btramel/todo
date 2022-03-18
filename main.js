@@ -13,9 +13,9 @@ const LOCAL_STORAGE_ITEMS_KEY = 'items.key'
 // initialize array with to-do list items (objects) + local storage
 let items = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ITEMS_KEY)) 
 || [
-    // {title: 'Make coffee', priority: true, details: '', checked:},
-    // {title: 'Walk the dog', priority: false, details: 'walk around the park if the weather is nice', checked: false},
-    // {title: 'Exercise', priority: true, details: 'leg day', checked: true}
+    {title: 'Make coffee', priority: true, details: '', checked: false},
+    {title: 'Walk the dog', priority: false, details: 'walk around the park if the weather is nice', checked: false},
+    {title: 'Exercise', priority: true, details: 'leg day', checked: true}
 ]
 let reminderArr = [
     {title: 'Drink some water', priority: false, details: 'A reminder, with love. - B', checked: false},
