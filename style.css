@@ -203,7 +203,7 @@ header {
     place-items: center;
     font-size: 1.5rem;
     padding: 1rem;
-
+    z-index: 10;
     background-color: lemonchiffon;
     color: skyblue;
 }
@@ -243,7 +243,10 @@ header {
     padding: .5rem;
     width: 85vw;
     transition: min-height 0.1s ease-in-out;
-    
+}
+
+.item * {
+    z-index: -1;
 }
 
 .item button {

@@ -7,9 +7,7 @@ class Item {
         this.checked = checked;
     }
 }
-
 const LOCAL_STORAGE_ITEMS_KEY = 'items.key'
-
 // initialize array with to-do list items (objects) + local storage
 let items = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ITEMS_KEY)) 
 || [
@@ -26,14 +24,12 @@ let reminderArr = [
     {title: 'Try relaxing', priority: false, details: 'A reminder, with love. - B', checked: false},
     {title: 'Consider chilling out', priority: true, details: 'A reminder, with love. - B', checked: false}
 ];
-
 // SELECTORS
 const modal = document.querySelector('.modal')
 const overlay = document.getElementById('overlay')
 const form = document.querySelector('form')
 
 // EVENT LISTENERS
-
 // listen for new item click
 document.querySelector('#newItem').addEventListener('click', () => {
     openModal()
