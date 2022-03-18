@@ -245,10 +245,6 @@ header {
     transition: min-height 0.1s ease-in-out;
 }
 
-.item * {
-    z-index: -1;
-}
-
 .item button {
     background-color: skyblue;
     color: lemonchiffon;
@@ -299,6 +295,10 @@ header {
     position: absolute;
     top: 25%;
     left: 0%;
+}
+
+header {
+    z-index: 2;
 }
 
 /* footer {
