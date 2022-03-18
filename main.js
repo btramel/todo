@@ -9,24 +9,22 @@ class Item {
 }
 
 const LOCAL_STORAGE_ITEMS_KEY = 'items.key'
-const LOCAL_STORAGE_NAME_KEY = 'name.key'
-let username = JSON.parse(localStorage.getItem(LOCAL_STORAGE_NAME_KEY)) || undefined
 
 // initialize array with to-do list items (objects) + local storage
-let items = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ITEMS_KEY)) || []
-let caseyArr = [
-    {title: 'Drink water!', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
-    {title: 'Stretch!', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
-    {title: 'Read a little poetry!', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
-    {title: 'Yoga!', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
-    {title: '2 minutes deep breathing!', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
-    {title: 'Indulge in a sweet treat!', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
-    {title: 'Fuck it -- send a poem to the New Yorker!', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
-    {title: 'Think of everyone who loves you!', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
-    {title: 'Take stock of your accomplishments!', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
-    {title: 'Another butt tattoo?', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
-    {title: 'Call Brad', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
-    {title: 'Take a long, hot bath!', priority: true, details: 'A reminder, with love, from Honeybee 🐝'},
+let items = JSON.parse(localStorage.getItem(LOCAL_STORAGE_ITEMS_KEY)) 
+|| [
+    {title: 'Make coffee', priority: true, details: '', checked: false},
+    {title: 'Walk the dog', priority: false, details: 'walk around the park if the weather is nice', checked: false},
+    {title: 'Exercise', priority: true, details: 'leg day', checked: true}
+]
+let reminderArr = [
+    {title: 'Drink some water', priority: false, details: 'A reminder, with love. - B', checked: false},
+    {title: 'Get up and move around', priority: false, details: 'A reminder, with love. - B', checked: false},
+    {title: 'Release that shoulder tension', priority: false, details: 'A reminder, with love. - B', checked: false},
+    {title: 'Stretch', priority: false, details: 'A reminder, with love. - B', checked: false},
+    {title: 'Take a break', priority: false, details: 'You deserve it. A reminder, with love. - B', checked: false},
+    {title: 'Try relaxing', priority: false, details: 'A reminder, with love. - B', checked: false},
+    {title: 'Consider chilling out', priority: true, details: 'A reminder, with love. - B', checked: false}
 ];
 
 // SELECTORS
@@ -65,12 +63,13 @@ document.getElementById('submit-item').addEventListener('click', (e) => {
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
     }
-    function casey() {
-        if ( username.toLowerCase() === 'casey' && items.length % 4 === 0 ) {
-        items.push( caseyArr[getRandomInt(caseyArr.length - 1)])
+    function reminder() {
+        if ( items.length % 5 === 0 ) {
+            items.push( reminderArr[getRandomInt(reminderArr.length - 1)])
         } else return
     }
-    casey()
+    reminder()
+    sortArr()
     saveAndRender()
     modal.classList.remove('active')
     overlay.classList.remove('active')
@@ -99,7 +98,16 @@ inputDetails.addEventListener("keyup", function(e) {
 // SAVE TO LOCAL STORAGE -- HALLELUJAH
 function save() {
     localStorage.setItem(LOCAL_STORAGE_ITEMS_KEY, JSON.stringify(items))
-    localStorage.setItem(LOCAL_STORAGE_NAME_KEY, JSON.stringify(username))
+}
+function sortArr() {
+    items.sort(function(a, b) {
+    if ( a.checked  && !b.checked ) { return 1 } // to bottom of to-do list
+    if ( !a.checked && b.checked ) { return -1 }
+    if ( !a.priority && b.priority ) { return 1 }
+    if ( a.priority && !b.priority ) { return -1 }
+
+    return 0
+})
 }
 // use this primarily. render() to load initial page
 function saveAndRender() {
@@ -140,6 +148,7 @@ function render() {
     const container = document.getElementById('list-container')
     clearList(container)
 
+    sortArr()
     // loop through array of object, rendering each
     items.forEach(item => {
 
@@ -174,7 +183,7 @@ function render() {
         deleteNode.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" class="delete" viewBox="0 0 24 24" width="24px" fill="#fffacd"><path class="delete" d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>`
         
 
-        // click events
+        // EVENT LISTENERS
 
         // strikethrough text if checked, and remove strike if unchecked
         checkboxNode.onclick = function() {
@@ -182,11 +191,15 @@ function render() {
             if ( strikeParent.classList.contains('finished') ) {
             strikeParent.classList.remove('finished')
             item.checked = false;
+            sortArr()
             save()
+            render()
             }   else {
                 strikeParent.classList.add('finished')
                 item.checked = true;
+                sortArr()
                 save()
+                render()
             }
         }
 
@@ -212,11 +225,12 @@ function render() {
                         item.tag = items.indexOf(item)
                     })
                     // re-renders page
+                    sortArr()
                     saveAndRender()
                     // table log for proof
                     console.table(items)
-                }
-    
+        }
+        
         // display new card
         container.append(node)
         node.appendChild(titleNode)
@@ -231,7 +245,6 @@ function render() {
             checkboxNode.closest('.item').classList.add('finished')
             checkboxNode.setAttribute('checked', 'checked')
         }
-
 
     
     }) //END LOOP 
@@ -249,21 +262,8 @@ function render() {
             item.classList.toggle('hidden', !isVisible)
         }
     )})
-
+    
     save()
-}
-
-// function sortItems() {
-//     // sort obj array by priority
-// }
-
-// editdetailsbutton
-    // ontouchitem
-    // exit-edit-screen
-
-if ( username === undefined || username === null ) {
-    username = prompt('Welcome! What is your name?').toLowerCase()
-    alert(`Cool. Let's do stuff, ${username}`) 
 }
 
 render()

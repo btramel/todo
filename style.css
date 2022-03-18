@@ -287,17 +287,18 @@ header {
     cursor: pointer;
     /* -webkit-appearance: none; */
 }
-
 body {
-    position: relative;
-}
-
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 footer {
-    position: fixed;
+    flex: 1;
     color: inherit;
     font-size: 75%;
-    right: 5rem;
-    bottom: .65rem;
+    margin-left: 1rem;
+    margin-top: auto;
+    z-index: -1
 }
 
 footer a,
