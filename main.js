@@ -1,9 +1,10 @@
 class Item {
-    constructor(title, priority, details, tag) {
+    constructor(title, priority, details, tag, checked) {
         this.title = title;
         this.priority = priority;
         this.details = details;
         this.tag = tag;
+        this.checked = checked;
     }
 }
 
@@ -167,7 +168,9 @@ function render() {
         // distribute values
         titleNode.innerText = `${item.title}`
         detailsNode.innerText = `${item.details}`
+        // set priority
         if ( item.priority ? priorityNode.innerText = '!' : priorityNode.innerText = ' ' )
+        // add delete icon to button
         deleteNode.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" class="delete" viewBox="0 0 24 24" width="24px" fill="#fffacd"><path class="delete" d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>`
         
 
@@ -178,8 +181,12 @@ function render() {
             let strikeParent = checkboxNode.closest('.item')
             if ( strikeParent.classList.contains('finished') ) {
             strikeParent.classList.remove('finished')
+            item.checked = false;
+            save()
             }   else {
                 strikeParent.classList.add('finished')
+                item.checked = true;
+                save()
             }
         }
 
@@ -209,7 +216,6 @@ function render() {
                     // table log for proof
                     console.table(items)
                 }
-
     
         // display new card
         container.append(node)
@@ -219,9 +225,17 @@ function render() {
         node.appendChild(deleteNode)
         node.appendChild(detailsNode)
 
-        
+        // render checked or not
+        // must go after nodes are rendered
+        if ( item.checked == true ) { 
+            checkboxNode.closest('.item').classList.add('finished')
+            checkboxNode.setAttribute('checked', 'checked')
+        }
 
-    })
+
+    
+    }) //END LOOP 
+
     // search listener
     // must go after page has entirely rendered or final foreach iteration will not go
     const searchInput = document.getElementById('search')
@@ -235,6 +249,7 @@ function render() {
             item.classList.toggle('hidden', !isVisible)
         }
     )})
+
     save()
 }
 

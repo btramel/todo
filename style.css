@@ -296,7 +296,7 @@ footer {
     position: fixed;
     color: inherit;
     font-size: 75%;
-    left: 1rem;
+    right: 5rem;
     bottom: .65rem;
 }
 
@@ -344,10 +344,13 @@ footer a:visited {
 
 /* // Large devices (desktops, less than 1200px) */
 @media (min-width: 992px) {
-    .material-icons-outlined {
-        margin-right: 7rem;
+    .material-icons-outlined,
+    .menu,
+    .list-container {
+        margin-right: 6rem;
     }
-    .menu {
-        margin-right: 7rem;
+    .list-container,
+    .header-title {
+        margin-left: 6rem;
     }
 }
