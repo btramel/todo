@@ -237,11 +237,12 @@ header {
     grid-template-columns: 7fr 1fr 1fr 1fr;
     font-size: 1.1rem;
     min-height: 2rem;
-    border: 1px solid lemonchiffon;
+    border: 1px solid #fffacd;
     border-radius: .5rem;
     margin-bottom: 1rem;
     padding: .5rem;
     width: 85vw;
+    transition: min-height 0.1s ease-in-out;
     
 }
 
@@ -256,12 +257,11 @@ header {
 
 .item.expand {
     min-height: 8rem;
-
 }
 
 .title,
 .details {
-    padding-left: .75rem;
+    padding-left: 1.25rem;
 }
 
 .title, 
@@ -287,11 +287,17 @@ header {
     cursor: pointer;
     /* -webkit-appearance: none; */
 }
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+
+.item {
+    position: relative;
+}
+
+.detailed {
+    position: absolute;
+    top: 25%;
+    left: 0%;
+}
+
 footer {
     flex: 1;
     color: inherit;

@@ -159,6 +159,7 @@ function render() {
         const priorityNode = document.createElement('div')
         const checkboxNode = document.createElement('input')
         const deleteNode = document.createElement('button')
+        const iconNode = document.createElement('div')
 
 
         // assign class names to nodes
@@ -167,6 +168,8 @@ function render() {
         titleNode.classList.add('title')
         detailsNode.classList.add('details')
         detailsNode.classList.add('hidden')
+        iconNode.classList.add('hidden')
+        iconNode.classList.add('detailed')
         priorityNode.classList.add('priority')
         deleteNode.classList.add('delete')
         checkboxNode.type = 'checkbox'
@@ -181,7 +184,14 @@ function render() {
         if ( item.priority ? priorityNode.innerText = '!' : priorityNode.innerText = ' ' )
         // add delete icon to button
         deleteNode.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" class="delete" viewBox="0 0 24 24" width="24px" fill="#fffacd"><path class="delete" d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>`
-        
+        // add dropdown icon to middle of list-item
+        iconNode.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#fffacd"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"/></svg>`
+
+        if ( item.details !== '' ) { 
+            iconNode.classList.remove('hidden')
+        }
+
+
 
         // EVENT LISTENERS
 
@@ -234,6 +244,7 @@ function render() {
         // display new card
         container.append(node)
         node.appendChild(titleNode)
+        node.appendChild(iconNode)
         node.appendChild(priorityNode)
         node.appendChild(checkboxNode)
         node.appendChild(deleteNode)
