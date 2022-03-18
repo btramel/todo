@@ -214,7 +214,7 @@ header {
 }
 
 #search {
-    max-width: 5rem;
+    max-width: 7rem;
     outline:#87ceeb;
     border: 1px solid rgb(132, 197, 223);
     font-family: inherit;
@@ -348,6 +348,10 @@ footer a:visited {
     .menu,
     .list-container {
         margin-right: 6rem;
+    }
+
+    .material-icons-outlined {
+        margin-bottom: 1rem;
     }
     .list-container,
     .header-title {
