@@ -321,6 +321,10 @@ footer a:visited {
     display: none;
 }
 
+#search:invalid {
+    border:rgb(223, 165, 132)
+}
+
 /* // Large devices (desktops, less than 1200px) */
 @media (min-width: 992px) {
     .material-icons-outlined,
