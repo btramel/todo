@@ -124,7 +124,9 @@ button:active {
     border: 1px solid skyblue;
 }
 
-
+button.delete {
+    width: 75%;
+}
 
 .modal-header {
     display: flex;
@@ -214,14 +216,14 @@ header {
 }
 
 #search {
-    max-width: 7rem;
+    width: 12rem;
     outline:#87ceeb;
     border: 1px solid rgb(132, 197, 223);
     font-family: inherit;
 }
 
 #search:focus {
-    max-width: 15rem;
+    border:2px solid rgb(100, 188, 223);
 }
 
 .list-container {
@@ -243,6 +245,7 @@ header {
     padding: .5rem;
     width: 85vw;
     transition: min-height 0.1s ease-in-out;
+    cursor: pointer;
 }
 
 .item button {
@@ -284,7 +287,6 @@ header {
     width: 18px;
     align-self: center;
     cursor: pointer;
-    /* -webkit-appearance: none; */
 }
 
 .item {
@@ -301,22 +303,6 @@ header {
     z-index: 2;
 }
 
-/* footer {
-    flex: 1;
-    color: inherit;
-    font-size: 75%;
-    margin-left: 1rem;
-    margin-top: auto;
-    z-index: -1
-} */
-
-/* footer a,
-footer a:active,
-footer a:visited {
-    color: inherit;
-    text-decoration: underline;
-} */
-
 .hidden {
     display: none;
 }
@@ -325,12 +311,16 @@ footer a:visited {
     border:rgb(223, 165, 132)
 }
 
-/* // Large devices (desktops, less than 1200px) */
+/* // Large devices (desktops) */
 @media (min-width: 992px) {
     .material-icons-outlined,
     .menu,
     .list-container {
-        margin-right: 6rem;
+        margin-right: 8rem;
+    }
+
+    .item {
+        width: 75vw;
     }
 
     .material-icons-outlined {

@@ -34,7 +34,7 @@ const reminderArr = [
     title: 'Get up and move around', priority: false, details: 'A reminder, with love. - B', checked: false,
   },
   {
-    title: 'Release that shoulder tension', priority: false, details: 'A reminder, with love. - B', checked: false,
+    title: 'Remember your accomplishments', priority: false, details: 'A reminder, with love. - B', checked: false,
   },
   {
     title: 'Stretch', priority: false, details: 'A reminder, with love. - B', checked: false,
@@ -97,6 +97,8 @@ function save() {
       iconNode.classList.add('detailed');
       priorityNode.classList.add('priority');
       deleteNode.classList.add('delete');
+      deleteNode.classList.add('spinscale');
+      deleteNode.id = 'spinscale';
       checkboxNode.type = 'checkbox';
       checkboxNode.name = 'finished';
       checkboxNode.id = 'finished';
@@ -251,7 +253,6 @@ overlay.addEventListener('click', () => {
 // clicking on submit will create new item div and object
 document.getElementById('submit-item').addEventListener('click', (e) => {
   e.preventDefault();
-  save();
   createItemObj();
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
